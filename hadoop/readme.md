@@ -13,12 +13,17 @@ Avec hive :
 ### Tâches : 
 #### Temps 1 - définir une arborescence pour le stockage dans du fichier + Temps 2 - restitution 
 
-	L'arborescence convenue est : 
-				AAAA 
-					parquet
-					csv
-					header
-			
+	L'arborescence convenue est :
+		AAAA 
+		 ├── parquet
+		 ├── csv
+		 └── header
+
+	Application dans notre cas :
+		2022 
+		 ├── parquet
+		 ├── csv
+		 └── header
 				
 #### Temps 3 - Travail Individuel
 		
@@ -99,14 +104,13 @@ Avec hive :
 				stored as PARQUET
 				location '/DATA/2022/PARQUET';
 
+			* Utiliser Hive pour peupler la table cities_2022_parquet à partir de la table cities_2022 
 				INSERT INTO TABLE cities_2022_parquet SELECT * FROM cities_2022;
-
-
-			* Utiliser Hive pour peupler la table cities_2022_parquet à partir de la table cities_2022
-		
+				
+			   || Pour vérifier on peut utiliser : select * from cities_2022_parquet; ||
+			   
 		Optionnel
-			* dans Hive définir une table cities partitionné par année qui contiendra les données du fichiers cities_2022 au format parquet +
-				ajouter la partition pour l’année 2022 + peupler la table à l’aide de la table cities_2022 :
+			* dans Hive définir une table cities partitionné par année qui contiendra les données du fichiers cities_2022 au format parquet :
 				
 					CREATE TABLE cities(
 							code_commune_insee STRING,
@@ -119,4 +123,6 @@ Avec hive :
 					stored as PARQUET
 					location '/DATA';
 					
+			* ajouter la partition pour l’année 2022 & peupler la table à l’aide de la table cities_2022 
+			
 					INSERT INTO TABLE cities PARTITION(year='2022') SELECT * FROM cities_2022;
