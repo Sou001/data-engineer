@@ -96,7 +96,7 @@
 					libelle_d_acheminement STRING,
 					coordonnees_gps STRING)
 				stored as PARQUET
-				location '/DATA/2022/PARQUET';
+				location '/data/2022/PARQUET';
 
 				INSERT INTO TABLE cities_2022_parquet SELECT * FROM cities_2022;
 
@@ -116,6 +116,6 @@
 							coordonnees_gps STRING)
 					PARTITIONED BY(year string)
 					stored as PARQUET
-					location '/DATA';
+					location '/data';
 					
 					INSERT INTO TABLE cities PARTITION(year='2022') SELECT * FROM cities_2022;

@@ -102,7 +102,7 @@ Avec hive :
 					libelle_d_acheminement STRING,
 					coordonnees_gps STRING)
 				stored as PARQUET
-				location '/DATA/2022/PARQUET';
+				location '/data/2022/parquet';
 
 			* Utiliser Hive pour peupler la table cities_2022_parquet à partir de la table cities_2022 
 				INSERT INTO TABLE cities_2022_parquet SELECT * FROM cities_2022;
@@ -121,7 +121,7 @@ Avec hive :
 							coordonnees_gps STRING)
 					PARTITIONED BY(year string)
 					stored as PARQUET
-					location '/DATA';
+					location '/data';
 					
 			* ajouter la partition pour l’année 2022 & peupler la table à l’aide de la table cities_2022 
 			
