@@ -131,10 +131,19 @@ Avec hive :
 #### Cheminement des tâches avec des photos :
 
 	1 - Identification du fichier & copier en local + générer les fichiers (header & corps) :
+![identification_fichier](https://user-images.githubusercontent.com/45198860/195123088-c420e8cb-cbdd-4125-8f08-2765f0e16c98.PNG)
+![copie_fichier](https://user-images.githubusercontent.com/45198860/195123163-9bea2fee-1aed-4b25-95cb-2ce80c55e4b4.PNG)
+![generated_files](https://user-images.githubusercontent.com/45198860/195123224-43546ac8-2cf0-4ed2-bf98-1d8322f8105b.PNG)
 
 	2 - Création de l'arborescence
-	
+![arbo1](https://user-images.githubusercontent.com/45198860/195123297-96843176-dca6-41b1-b44f-c0d627c34f48.PNG)
+![arbo2](https://user-images.githubusercontent.com/45198860/195123335-884b14dd-d1a6-4ac3-b5fd-c664e05d546c.PNG)
+![image](https://user-images.githubusercontent.com/45198860/195123567-eb86f457-fcb0-4f21-bb98-1f20b314765e.png)
+
 	3 - Création group & user (data_analyst) + directory data_analyst dans user + copier fichier corps + accès
-	
+![image](https://user-images.githubusercontent.com/45198860/195124640-2261624d-17ec-4ad5-ba48-9c8f9b95a178.png)
+![image](https://user-images.githubusercontent.com/45198860/195124927-f63d66b6-6df0-4f61-927f-5ed138761c69.png)
+
+
 	4 - Création des tables avec Hive
 	
