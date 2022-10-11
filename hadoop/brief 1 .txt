@@ -1,10 +1,15 @@
 
 
 
-		*************************************
-				Récap des tâches
-		*************************************
+							*************************************
+								  Récap des tâches
+							*************************************
 		
+		/!\ à noter que pour vérifier avec hadoop on utilise les commandes suivantes :
+			* hdfs dfs -ls directory --> exemple hdfs dfs -ls /data
+		    avec hive :
+		    	* show tables;
+			* describe formatted name_table;
 		
 		* Temps 1 : définir une arborescence pour le stockage dans du fichier + Temps 2 : restitution 
 
