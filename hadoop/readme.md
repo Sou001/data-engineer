@@ -11,7 +11,7 @@ Avec hive :
 	* describe formatted name_table;
 
 ### Tâches : 
-#### Temps 1 - définir une arborescence pour le stockage dans du fichier + Temps 2 - restitution 
+#### Temps 1 et 2 - définir une arborescence pour le stockage dans du fichier + restitution 
 
 	L'arborescence convenue est :
 		AAAA
