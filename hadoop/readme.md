@@ -142,8 +142,15 @@ Avec hive :
 
 	3 - Création group & user (data_analyst) + directory data_analyst dans user + copier fichier corps + accès
 ![image](https://user-images.githubusercontent.com/45198860/195124640-2261624d-17ec-4ad5-ba48-9c8f9b95a178.png)
+
 ![image](https://user-images.githubusercontent.com/45198860/195124927-f63d66b6-6df0-4f61-927f-5ed138761c69.png)
 
+![image](https://user-images.githubusercontent.com/45198860/195279589-fc087d3b-635f-4533-a0c9-153ecc47c043.png)
 
 	4 - Création des tables avec Hive
-	
+![image](https://user-images.githubusercontent.com/45198860/195279815-90b63b6d-7b76-40a5-9b4c-978961490b5f.png)
+
+![image](https://user-images.githubusercontent.com/45198860/195279948-bd934a5e-4505-460b-b102-5131797f0a29.png)
+
+On remarque que la table parquet partitionée est bien affichée
+
