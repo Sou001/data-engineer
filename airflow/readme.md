@@ -23,7 +23,7 @@ On utilise le dossier "data"  déjà créer pour le brief sur hadoop & on ajoute
 			├── parquet
 			  ├── csv
 			  └── header
-		  └──tracks
+		  └──artists
 			  ├── parquet
 			  ├── csv
 			  └── header
