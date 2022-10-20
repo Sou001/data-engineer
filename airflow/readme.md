@@ -5,8 +5,9 @@
 
 #### Mise en place du premier DAG spotify
 
-Execution du code spotify chaque jour à 7 :
-	* Connexion à l'api Spoityf
+Execution du code spotify chaque jour à 7h :
+
+	* Connexion à l'api Spotify
 	* Récupérer les informations sur les tracks & artists de la liste des playlists définiée
 	* Stocker ces données dans le dossier sortie **sans header**
 	
