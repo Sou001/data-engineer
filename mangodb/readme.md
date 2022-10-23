@@ -82,3 +82,8 @@ On considère la collection movies as a dataset, essayer de construire un datafr
 1- Preporcessing: Faire un état des lieux sur ce jeu de données: nombre de valeurs manquantes, nombre de valeur nulles, vérifier les doublons.., Nettoyer les données avec des anomalies(s'il y en a )..
 
 2- DataViz: faire une analyse exploratoire (top 10 des acteurs les plus presents dans les films,nombre de films par année..)
+
+
+
+
+![image](https://user-images.githubusercontent.com/45198860/197416778-2fe5b980-8f9c-4e8e-8f90-2b4e2f789b09.png)
