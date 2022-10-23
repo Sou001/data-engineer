@@ -42,7 +42,12 @@ On dépose dans le header de chacune des tables, un fichier contenant les noms d
 
 #### Création du dag et vérification avec airflow
 
-	* la script spotify_dag.py contient le code du dag
+	* la script spotify_dag.py contient le code du dag qui se chargera de :
+		* Récupération des tracks & artists via l'api spotify
+		* Calcul de l'historique (delta) sur les tracks
+		* Copies des fichiers (artists et delta sur les tracks) dans leurs endroits hdfs respectifs
+		* Nettoyage des fichiers dont on n'aura pas l'utilité pour l'exécution suivante
+		
 	* Vue sur l'exécution du dag via airflow et l'ordonnancement des tâches
 
 ![image](https://user-images.githubusercontent.com/45198860/197410218-5790d6b1-d952-40e2-a84c-494ab1b2455b.png)
