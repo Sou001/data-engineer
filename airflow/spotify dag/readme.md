@@ -38,8 +38,15 @@ On dépose dans le header de chacune des tables, un fichier contenant les noms d
 
 #### Création des tables Hive
 
-* On crée les tables avec "create external table" (cf dans dossier hql dans dossier dags)
+* On crée les tables avec "create external table" (cf dans dossier hql)
 
+#### Création du dag et vérification avec airflow
+
+	* la script spotify_dag.py contient le code du dag
+	* Vue sur l'exécution du dag via airflow et l'ordonnancement des tâches
+
+![image](https://user-images.githubusercontent.com/45198860/197410218-5790d6b1-d952-40e2-a84c-494ab1b2455b.png)
+![image](https://user-images.githubusercontent.com/45198860/197410259-a62b7533-8558-46d5-9a29-f25f58351ae4.png)
 
 
 
