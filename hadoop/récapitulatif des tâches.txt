@@ -2,7 +2,7 @@
 
 
 							*************************************
-								  Récap des tâches
+										Récap des tâches
 							*************************************
 		
 		/!\ à noter que pour vérifier avec hadoop on utilise les commandes suivantes :
