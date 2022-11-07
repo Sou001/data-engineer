@@ -3,7 +3,7 @@
 
  
 
-### Travail préparatoire
+#### Travail préparatoire
 
 	* démarrer hadoop sur la vm avec le script ~/start-hadoop.sh 
 		exécution dans le terminal de : ~/start-hadoop.sh
@@ -37,7 +37,7 @@
 		3 - On utilise la commande : "select * from cities desc limit 2;" pour vérifier si les données correspondent bien avec une comparaison avec les données originales
 		
 
-### Lecture de fichier
+#### Lecture de fichier
 
 	* lancer un shell interactif pyspark ou pyspark3 dans le shell interactif
 		Dans le terminal, on exécute la commande : pyspark3
@@ -89,9 +89,9 @@
 
 
 
-### App
+#### App
 
-** cf le dossier "spark_cities_app" pour le code de l'app créé avant l'exécution des commandes dans le terminal **
+**cf le dossier "spark_cities_app" pour le code de l'app créé avant l'exécution des commandes dans le terminal**
 
 **Tasks :** 
 ​	* créer un fichier python :
@@ -108,7 +108,7 @@
 
 	* Créer une classe cities qui possède une fonction read servant à charger les données cities de hive dans un dataframe. écrire le nom de chaque colonne de la table dans une constante
 		
-**L'ordre exécution des commandes :	**
+**L'ordre exécution des commandes :**
 	
 	* Put safemode on off :
 		hdfs dfsadmin -safemode leave
@@ -129,7 +129,7 @@
 		hdfs dfs -ls -R /data
 
 
-### Manipulation de base (in here)
+#### Manipulation de base (in here)
 
 	* reprenez votre application spark et créer un nouveau dataframe cities_clean dans le main de votre application qui contiendra uniquement les colonnes suivantes : 
 		* code postal,
@@ -161,7 +161,7 @@
 
 	* a partir du dataframe clean_cities créer un nouveau dataframe contenant le nombre de communes par département, sauvegarder le résultat dans un fichier csv unique trié par ordre décroissant de compte (le département contenant le plus de villes doit être sur la première ligne) sauvegarde le résultat sur hdfs au format csv dans le dossier /refined/departement/v1/csv
 
-### UDF
+#### UDF
 
  * Créer la fonction departement_udf qui a les mêmes paramètres d'entrée et sortie que la fonction département précédente, mais qui calcule correctement
    le département corse en utilisant une UDF (utiliser le test du chapitre précédent pour tester que votre fonction marche bien.
@@ -180,7 +180,7 @@
 
 ​
 
-###  Scala
+####  Scala
 
 	réécrire votre application en scala
 	
