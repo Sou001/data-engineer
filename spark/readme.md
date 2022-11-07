@@ -131,16 +131,28 @@
 
 ## Manipulation de base (in here)
 
-	* reprenez votre application spark et créer un nouveau dataframe cities_clean dans le main de votre application qui contiendra uniquement les colonnes suivantes : 
+	* reprenez votre application spark et créer un nouveau dataframe cities_clean dans le main de votre application qui contiendra 
+	  uniquement les colonnes suivantes : 
 		* code postal,
 		* code insee,
 		* nom de la ville,
 		* coordonnees gps
-
+		cf script main
+		
 	* Créer une colonne “dept” qui contient les deux premiers chiffres du code postal. La colonne doit être de type string
-
+		cf script main
+		
 	* sauvegarder votre dataframe nettoyer sur HDFS dans le dossier /refined/cities/v1/parquet
-
+		cf script main
+		
+	Pour vérifier la table nous créons une table hive qui lit de la data du file parquet : 
+		create external table cities_cleaned(code_commune_insee string, nom_de_la_commune string, 
+						     code_postal string, coordonnees_gps string, dept string) 
+		stored as parquet
+		location '/data/refined/cities/v1/parquet';
+		
+	Par la suite nous exécutons un : select * from cities_cleaned limit 2;
+	
 ## Test
 
 	* Dans votre application python créer une fonction split_lat_long qui prend en entrée un dataframe et qui renvoie un dataframe. 
