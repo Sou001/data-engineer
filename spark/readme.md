@@ -50,7 +50,7 @@
 	* comparer le schéma des deux tables comparer les premières lignes des deux dataframe
 		on lit la table hive avec la commande : spark.read.table("cities")
 		|
-		|_résultat :DataFrame[code_commune_insee: string, nom_de_la_commune: string, code_postal: string, ligne_5: string, libelle_d_acheminement: string, coordonnees_gps: string, year: string]
+		|_résultat : DataFrame[code_commune_insee: string, nom_de_la_commune: string, code_postal: string, ligne_5: string, libelle_d_acheminement: string, coordonnees_gps: string, year: string]
 
 		Même schéma !
 		
@@ -129,7 +129,7 @@
 		hdfs dfs -ls -R /data
 
 
-## Manipulation de base (in here)
+## Manipulation de base
 
 	* reprenez votre application spark et créer un nouveau dataframe cities_clean dans le main de votre application qui contiendra 
 	  uniquement les colonnes suivantes : 
@@ -146,8 +146,7 @@
 		cf script main
 		
 	Pour vérifier la table nous créons une table hive qui lit de la data du file parquet : 
-		create external table cities_cleaned(code_commune_insee string, nom_de_la_commune string, 
-						     code_postal string, coordonnees_gps string, dept string) 
+		create external table cities_cleaned(code_commune_insee string, nom_de_la_commune string, code_postal string, coordonnees_gps string, dept string) 
 		stored as parquet
 		location '/data/refined/cities/v1/parquet';
 		
@@ -159,8 +158,7 @@
 	  La fonction doit transformer la colonne coordonnees_gps en deux colonnes latitude et longitude.
 	  Les données de latitude doivent être de type double.
 	  La colonne coordonnees_gps initiale ne doit plus exister dans le dataframe de sortie
-
-
+	  
 	* écrire un test pour tester la fonction split_lat_long
 
 	* créer une fonction “departement” qui extrait les deux premiers chiffres du code postal dans une colonne dept
@@ -169,18 +167,46 @@
 
 	* Reprendre le code de votre application pour enchaîner l’exécution des fonction split_lat_long et departement écrire le résultat dans /refined/cities/v1/parquet
 
-	* Aggregation & Jointure
+	cf code cities.py pour les fonctions & main.py pour l'ordre d'exécution.
+	
+	Afin de valider les données, on exécute dans hive les commandes suivantes :
+	
+	1 - On drop la table qui existe déjà :
+			DROP TABLES cities_cleaned;
+	
+	2 - On la re-crée avec le nouveau schéma : 
+	
+		create external table cities_cleaned(code_commune_insee string, nom_de_la_commune string, 
+											 code_postal string, ligne_5 string, libelle_d_acheminement string, 
+											 latitude string, longitude string, dept string) 
+		stored as parquet location '/data/refined/cities/v1/parquet';
 
-	* a partir du dataframe clean_cities créer un nouveau dataframe contenant le nombre de communes par département, sauvegarder le résultat dans un fichier csv unique trié par ordre décroissant de compte (le département contenant le plus de villes doit être sur la première ligne) sauvegarde le résultat sur hdfs au format csv dans le dossier /refined/departement/v1/csv
+	3 - On regarde les 3 premières lignes de cette table :
+			select * from cities_cleaned limit 3;
+			
+	4 - launch tests :
+			* Code tests est dans : tests/models/test_cities.py
+			* On exécute la commande suivante :
+				pytest tests/models/test_cities.py
+				
+**/!\ il faut être dans le dossier du projet sinon il faut penser à mettre tout le chemin vers le fichier de test**
+	
+## Aggregation & Jointure
 
+	* a partir du dataframe clean_cities créer un nouveau dataframe contenant le nombre de communes par département,
+	  sauvegarder le résultat dans un fichier csv unique trié par ordre décroissant de compte (le département contenant 
+	  le plus de villes doit être sur la première ligne) sauvegarde le résultat sur hdfs au format csv dans le dossier /refined/departement/v1/csv
+
+	cf code dans models/cities
+	
 ## UDF
 
- * Créer la fonction departement_udf qui a les mêmes paramètres d'entrée et sortie que la fonction département précédente, mais qui calcule correctement
-   le département corse en utilisant une UDF (utiliser le test du chapitre précédent pour tester que votre fonction marche bien.
-   sauvegarder le résultat sur HDFS en csv dans le dossier /refined/departement/v2/csv
+	* Créer la fonction departement_udf qui a les mêmes paramètres d'entrée et sortie que la fonction département précédente, mais qui calcule correctement
+	  le département corse en utilisant une UDF (utiliser le test du chapitre précédent pour tester que votre fonction marche bien.
+	  sauvegarder le résultat sur HDFS en csv dans le dossier /refined/departement/v2/csv
    
-  * Faire une nouvelle fonction departement_fct qui gère le cas de la Corse sans UDF, mais uniquement avec les fonctions disponible dans sur les colonnes.
-    vous pouvez par exemple utiliser les fonctions : 
+	* Faire une nouvelle fonction departement_fct qui gère le cas de la Corse sans UDF, mais uniquement avec les fonctions disponible dans sur les colonnes.
+	  vous pouvez par exemple utiliser les fonctions : 
 		* case, when Une fois les fonctions terminées dans le main de votre application faire un benchmark pour voir laquelle des deux solutions est la plus rapide.
 
 	* Window Function: À l'aide de window function à chaque ville ajouter les coordonnées GPS de la préfecture du département.
