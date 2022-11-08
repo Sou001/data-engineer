@@ -146,7 +146,8 @@
 		cf script main
 		
 	Pour vérifier la table nous créons une table hive qui lit de la data du file parquet : 
-		create external table cities_cleaned(code_commune_insee string, nom_de_la_commune string, code_postal string, coordonnees_gps string, dept string) 
+		create external table cities_cleaned(code_commune_insee string, nom_de_la_commune string, 
+						     code_postal string, coordonnees_gps string, dept string) 
 		stored as parquet
 		location '/data/refined/cities/v1/parquet';
 		
@@ -177,8 +178,8 @@
 	2 - On la re-crée avec le nouveau schéma : 
 	
 		create external table cities_cleaned(code_commune_insee string, nom_de_la_commune string, 
-											 code_postal string, ligne_5 string, libelle_d_acheminement string, 
-											 latitude string, longitude string, dept string) 
+						     code_postal string, ligne_5 string, libelle_d_acheminement string, 
+						     latitude string, longitude string, dept string) 
 		stored as parquet location '/data/refined/cities/v1/parquet';
 
 	3 - On regarde les 3 premières lignes de cette table :
