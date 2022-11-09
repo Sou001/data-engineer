@@ -198,20 +198,53 @@
 	  sauvegarder le résultat dans un fichier csv unique trié par ordre décroissant de compte (le département contenant 
 	  le plus de villes doit être sur la première ligne) sauvegarde le résultat sur hdfs au format csv dans le dossier /refined/departement/v1/csv
 
-	cf code dans models/cities
+	1 - cf code dans main.py & models/cities.py
+	2 - Pour vérifier que la table est bien stockée & contient les données que nous souhaitons, on exécute les commandes suivantes   : 
+		
+		a - On va sur hive :
+				Hive
+		
+		b - On crée la table Hive qui pointe vers où on a stocké notre table de sortie :
+		
+				create external table departement(dept string, nb_commune int) 
+				row format delimited fields terminated by ';' 
+				stored as TEXTFILE 
+				location '/data/refined/departement/v1/csv';
+			
+		c - On lit les données : 
+				select * from departement_v2 limit 10;
 	
 ## UDF
 
 	* Créer la fonction departement_udf qui a les mêmes paramètres d'entrée et sortie que la fonction département précédente, mais qui calcule correctement
 	  le département corse en utilisant une UDF (utiliser le test du chapitre précédent pour tester que votre fonction marche bien.
 	  sauvegarder le résultat sur HDFS en csv dans le dossier /refined/departement/v2/csv
-   
-	* Faire une nouvelle fonction departement_fct qui gère le cas de la Corse sans UDF, mais uniquement avec les fonctions disponible dans sur les colonnes.
-	  vous pouvez par exemple utiliser les fonctions : 
-		* case, when Une fois les fonctions terminées dans le main de votre application faire un benchmark pour voir laquelle des deux solutions est la plus rapide.
 
-	* Window Function: À l'aide de window function à chaque ville ajouter les coordonnées GPS de la préfecture du département.
-	  On la préfecture du département se situe dans la ville ayant le code postal le plus petit dans tout le département.
+		1 - cf code dans main.py & models/cities.py
+		2 - Pour vérifier que la table est bien stockée & contient les données que nous souhaitons, on exécute les commandes suivantes   : 
+			
+			a - On va sur hive :
+					Hive
+			
+			b - On crée la table Hive qui pointe vers où on a stocké notre table de sortie :
+			
+					create external table departement_v2(dept string, nb_commune int) 
+					row format delimited fields terminated by ';' 
+					stored as TEXTFILE 
+					location '/data/refined/departement/v2/csv';
+				
+			c - On lit les données : 
+					select * from departement_v2 limit 10;
+	   
+	* Faire une nouvelle fonction departement_fct qui gère le cas de la Corse sans UDF, mais uniquement avec les fonctions disponible sur les colonnes.
+	  vous pouvez par exemple utiliser les fonctions : case, when.
+	  Une fois les fonctions terminées dans le main de votre application faire un benchmark pour voir laquelle des deux solutions est la plus rapide.
+	  
+		**cf code dans main.py & cities.py**
+		
+## Window Function: 
+	À l'aide de window function à chaque ville ajouter les coordonnées GPS de la préfecture du département.
+	On la préfecture du département se situe dans la ville ayant le code postal le plus petit dans tout le département.
 	  Pour l’exercice on considère également que la Corse est un seul département (on ne sépare pas la haute corse et la corse du sud).
 	  Une fois la préfecture trouvée, calculer la distance relative de chaque ville par rapport à la préfecture.
 	  On ne cherche pas une distance en km. calculer la distance moyenne et médiane à la préfecture par département sauvegarder le résultat sur HDFS en csv 
