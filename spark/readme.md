@@ -246,15 +246,60 @@
 ![image](https://user-images.githubusercontent.com/45198860/200820683-4ebcd2be-6431-4694-a5ae-802e7d9f43d9.png)
 		
 ## Window Function: 
-	À l'aide de window function à chaque ville ajouter les coordonnées GPS de la préfecture du département.
-	On la préfecture du département se situe dans la ville ayant le code postal le plus petit dans tout le département.
-	  Pour l’exercice on considère également que la Corse est un seul département (on ne sépare pas la haute corse et la corse du sud).
-	  Une fois la préfecture trouvée, calculer la distance relative de chaque ville par rapport à la préfecture.
-	  On ne cherche pas une distance en km. calculer la distance moyenne et médiane à la préfecture par département sauvegarder le résultat sur HDFS en csv 
-	  dans le dossier /refined/departement/v3/csv
+	* À l'aide de window function à chaque ville ajouter les coordonnées GPS de la préfecture du département tel que :
+		La préfecture du département se situe dans la ville ayant le code postal le plus petit dans tout le département.
+		Pour l’exercice on considère également que la Corse est un seul département (on ne sépare pas la haute corse et la corse du sud).
+	 
+	* Une fois la préfecture trouvée, calculer la distance relative de chaque ville par rapport à la préfecture:
+		On ne cherche pas une distance en km --> calculer la distance moyenne et médiane à la préfecture par département.
+	
+	* sauvegarder le résultat sur HDFS en csv dans le dossier /refined/departement/v3/csv
 
-​
+**cf code dans main.py & cities.py**
 
+Afin de vérifier les données sauvegardées, nous créons la table hive puis on affiche les résultats :
+
+	create external table departement_v3(dept string, mean_dist float, median_dist float)
+	row format delimited fields terminated by ';' 
+	stored as TEXTFILE 
+	location '/data/refined/departement/v3/csv';
+
+Il y a deux méthodes pour utiliser la distance : 
+
+**Méthode 1 :**
+	* On utilise udf avec une fonction python qui utilise des formuls mathématiques pour calculer la distance avec latitude et longetude
+
+**Méthode 2 :**
+On utilise la librairie geopy. Pour cela il faut créer un env dans lequel on installera les librairies qu'il nous faut.
+Par la suite on met à disposition de spark ces informations dans "spark-submit" :
+
+	* Création de l'env :
+		virtualenv myenv -p /usr/bin/python3
+	
+	* Activation de l'env :
+		source myenv/bin/activate
+		
+	* Lancer l'installation de tous les libs dont on a besoin sachant que geopy en fait partie maintenant :
+		pip3 install -r requirements.txt
+	
+	* Utiliser le module geopy pour le calcul de distance :
+		cf code dans main.py & cities.py
+	
+	* Spark submit : 
+		spark-submit \
+		  --master local \
+		  --conf spark.pyspark.python=/usr/bin/python3 \
+		  --py-files /home/simplon/Documents/spark/spark_cities_app/dist/SparkCities-0.1-py3.7.egg\
+		  /home/simplon/Documents/spark/spark_cities_app/__main__.py
+	
+	* Tester avec Hive  :
+		create external table departement_v4(dept string, mean_dist float, median_dist float)
+		row format delimited fields terminated by ';' 
+		stored as TEXTFILE 
+		location '/data/refined/departement/v4/csv';
+		
+		select * from departement_v4 limit 10;
+		
 ##  Scala
 
 	réécrire votre application en scala

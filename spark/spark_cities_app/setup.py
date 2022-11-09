@@ -3,6 +3,7 @@ setup(
    name="SparkCities",
    version="0.1",
    packages=find_packages(include=['spark_cities', 'spark_cities.*']),
+   py_modules=['spark_cities','spark_cities.*'],
 
    # Project uses reStructuredText, so ensure that the docutils get
    # installed or upgraded on the target machine
