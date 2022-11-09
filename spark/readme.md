@@ -240,7 +240,10 @@
 	  vous pouvez par exemple utiliser les fonctions : case, when.
 	  Une fois les fonctions terminées dans le main de votre application faire un benchmark pour voir laquelle des deux solutions est la plus rapide.
 	  
-		**cf code dans main.py & cities.py**
+**cf code dans main.py & cities.py**
+
+
+![image](https://user-images.githubusercontent.com/45198860/200820683-4ebcd2be-6431-4694-a5ae-802e7d9f43d9.png)
 		
 ## Window Function: 
 	À l'aide de window function à chaque ville ajouter les coordonnées GPS de la préfecture du département.
