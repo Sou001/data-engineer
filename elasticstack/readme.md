@@ -101,6 +101,22 @@ Le fichier que nous allons utilisé, est : "dataset/movies.json"
 		
 		
 		
-## Partie 2 - Requêtes
+## Partie 2 - Requêtes simples
 
-cf le notebook "elastic_stack_queries"
+** Le but de cette partie est de faire des requêtes simples pour se familiariser avec rest queries.**
+
+	cf le notebook "elastic_stack_simple_queries"
+
+
+## Partie 3 - index & crud
+
+** Le but de cette partie est de faire des manipulations de création d'index & insértion des données (create, read, update, delete)**
+
+	cf le notebook "elastic_stack_index_crud"
+
+
+## Partie 4 - Aggregation
+
+** Le but de cette partie est de faire des requêtes complexes type aggrégations pour aller plus loins dans la maitrise de ce type de requêtes.**
+
+	cf le notebook "elastic_stack_aggs"
